@@ -75,9 +75,19 @@ $queue = new \CodeYellow\Queue\Queue(string $name);
 
 A job can be created easily be created from the constructor
 
+Priority options:
+- \CodeYellow\Queue\Job::PRIORITY_VERYLOW
+- \CodeYellow\Queue\Job::PRIORITY_LOW
+- \CodeYellow\Queue\Job::PRIORITY_MEDIUM
+- \CodeYellow\Queue\Job::PRIORITY_HIGH
+- \CodeYellow\Queue\Job::PRIORITY_VERYHIGH
+- \CodeYellow\Queue\Job::PRIORITY_SYSTEM
+
+executeAfter option needs a timestamp (ex. strtotime('now +5 minutes'))
+
 ```php
 <?php
-$job = new \CodeYellow\Queue\Job(string $class, string $method, array $args, int $queueId, $priority = 0, $executeAfter = 0);
+$job = new \CodeYellow\Queue\Job(string $class, string $method, array $args, int $queueId, $priority, $executeAfter = 0);
 ```
 
 ## Errors
