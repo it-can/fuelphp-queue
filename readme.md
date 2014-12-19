@@ -83,7 +83,11 @@ Priority options:
 - \CodeYellow\Queue\Job::PRIORITY_VERYHIGH
 - \CodeYellow\Queue\Job::PRIORITY_SYSTEM
 
-executeAfter option needs a timestamp (ex. strtotime('now +5 minutes'))
+executeAfter option needs a timestamp.
+```php
+<?php
+$executeAfter = strtotime('now +5 minutes');
+```
 
 ```php
 <?php
