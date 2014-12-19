@@ -109,7 +109,7 @@ Assuming that a Queue named default is made, the minimal code to run a job is:
 
 ```
 $queue = new \CodeYellow\Queue\Queue('default');
-$queue->startQueue();
+$queue->startQueue(); // not needed if you set "implicit_queue_creation" to true and "implicit_queue_start_automatically" is set to true in the config file
 
 $job = new \CodeYellow\Queue\Job(
     'Controller_Test',

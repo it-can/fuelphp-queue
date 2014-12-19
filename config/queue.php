@@ -23,6 +23,7 @@ return array(
      * If enabled, queues that don't exist will be created if loaded
      */
     'implicit_queue_creation' => true,
+
     /**
      * If enabled, implicitely created queues will start automatically
      */
@@ -38,6 +39,8 @@ return array(
      */
     'log_option' => 'database',
 
-    // If log_option = 'file' set the logfile location
-    'log_file' => './queue.log'
+    /**
+     * If log_option = 'file' set the logfile location
+     */
+    'log_file' => './queue.log',
 );
