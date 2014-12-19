@@ -73,7 +73,7 @@ include_once VENDORPATH . 'codeyellow' . DS . 'queue' . DS . 'tasks' . DS . 'que
 Run migrations from the command line:
 
 ```
-php oil r migrate --all
+php oil refine migrate --all
 ```
 
 Now try on the command line:
@@ -89,14 +89,14 @@ The Queue package provides a status panel which shows the progress of the differ
 
 ```php
 <?php
-class Controller_Queue extends \Queue\Overview_Controller { }
+class Controller_Queue extends \CodeYellow\Queue\Overview_Controller { }
 ```
 
 * Create a view in app/views with the same base URL as the controller. In this view paste the following code where you want to display the overview:
 
 ```php
 <?php
-\Queue\Overview_Viewer::display($options);
+\CodeYellow\Queue\Overview_Viewer::display($options);
 ```
 
 # Usage
