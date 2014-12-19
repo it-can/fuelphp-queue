@@ -54,7 +54,7 @@ return array(
 );
 ```
 
-Add this to your _always_load_ section in fuel/app/config.php (just add it, don't remove the whole always_load section)
+Add this to your _always_load_ section in fuel/app/config.php (just add it, don't remove the whole always_load section). This is needed so that the queue config is always loaded in your application.
 ```php
 'always_load' => array(
     'config' => array(
