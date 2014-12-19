@@ -35,7 +35,7 @@ return array(
     /**
      * The command that is needed to start the queue from the database.
      */
-    'queue_command' => 'php oil r queue',
+    'queue_command' => 'php oil refine queue',
 
     /**
      * Where to log the done jobs. Possible values: 'database', 'file', 'none'
