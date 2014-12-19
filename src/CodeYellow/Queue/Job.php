@@ -1,6 +1,6 @@
 <?php
 /**
- * OverView_Viewer class 
+ * OverView_Viewer class
  *
  * PHP version 5
  *
@@ -42,7 +42,7 @@ class Job
      * The driver that is used
      */
     private static $driver = null;
-    
+
     /**
      * The id of the loaded job
      */
@@ -77,7 +77,7 @@ class Job
      * The time at which the job was created
      */
     public $timeAdded = null;
-    
+
     /**
      * The time at which the job was executed
      */
@@ -140,8 +140,6 @@ class Job
         $priority = Job::PRIORITY_MEDIUM,
         $executeAfter = 0
     ) {
-        //Load Config file
-        Core::loadConfig();
 
         //Check if we deal with a valid job
         if ($args != null && !is_array($args)) {
@@ -162,7 +160,7 @@ class Job
                 throw new Exception\QueueNotExists();
             }
         }
-    
+
         $this->class = $class;
         $this->function = $method;
         $this->args = $args;
@@ -214,7 +212,7 @@ class Job
      * Loads a job from an array
      *
      * @param array $job options to be loaded
-     * 
+     *
      * @return self
      * @post job is loaded into class
      */
@@ -318,8 +316,8 @@ class Job
     /**
      * Set the class
      *
-     * @param string $class class name to be used in the job 
-     * 
+     * @param string $class class name to be used in the job
+     *
      * @return self
      * @post class name is updated
      */

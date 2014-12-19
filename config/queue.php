@@ -43,4 +43,9 @@ return array(
      * If log_option = 'file' set the logfile location
      */
     'log_file' => './queue.log',
+
+    /**
+     * Set sleep time in seconds
+     */
+    'sleep' => 10,
 );

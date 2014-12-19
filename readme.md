@@ -12,6 +12,48 @@ Fuel-Queue is a queue system for FuelPHP's Oil Module. It is inspired by the fue
 
 
 # Installation
+Make a new file in fuel/app/config with the name queue.php with the following config:
+
+```php
+<?php
+return array(
+    /*
+    * Not database related config options
+    */
+    'base_url' => 'queue',    // The url that the queue page is shown upon
+
+    /**
+     * If enabled, queues that don't exist will be created if loaded
+     */
+    'implicit_queue_creation' => true,
+
+    /**
+     * If enabled, implicitely created queues will start automatically
+     */
+    'implicit_queue_start_automatically' => true,
+
+    /**
+     * The command that is needed to start the queue from the database.
+     */
+    'queue_command' => 'php oil r queue',
+
+    /**
+     * Where to log the done jobs. Possible values: 'database', 'file', 'none'
+     */
+    'log_option' => 'database',
+
+    /**
+     * If log_option = 'file' set the logfile location
+     */
+    'log_file' => './queue.log',
+
+    /**
+     * Set sleep time in seconds (be carefull, the will do a query every 10 seconds on your database)
+     */
+    'sleep' => 10,
+);
+```
+
 Make a new file in fuel/app/tasks with the name queue.php on your application with the follow code:
 
 ```php

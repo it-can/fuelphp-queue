@@ -1,6 +1,6 @@
 <?php
 /**
- * Queue class 
+ * Queue class
  *
  * PHP version 5
  *
@@ -15,7 +15,7 @@
 namespace Fuel\Tasks;
 
 /**
- * Queue class, handles the run() function for a task 
+ * Queue class, handles the run() function for a task
  *
  * @category Utilities
  * @package  Queue
@@ -27,16 +27,16 @@ class Queue
 {
     /** The task to be executed
       * Called by php oil r queue
-      * 
+      *
       * @return void
       */
     public static function run($maxJobs = -1)
     {
         // Initialize the core
         $core = new \CodeYellow\Queue\Core;
-        // Get the config file
-        self::loadConfig();
+
         $cmd = \Config::get('queue.queue_command');
+        $sleeptime = \Config::get('queue.sleep', 10);
 
         \Cli::write('Starting Queue');
         while ($maxJobs-- != 0) {
@@ -47,18 +47,18 @@ class Queue
             // Check if a job is available. If not, wait and try again
             if ($job == null) {
                 \Cli::write("No job found");
-                sleep(1);
+                sleep($sleeptime);
                 // Sleep disabled for testing
                 continue;
             }
 
             \Cli::write('Job fetched. Try the job!');
-            
+
             // Execute job
             $start = time();
             $status = "";
             exec($cmd . ':executeJob ' . (int) $job->getId(), $status);
-            
+
             // Write all the debug information from the job itself
             $i = 0;
             for ($i = 0; $i < count($status) -1; $i++) {
@@ -74,7 +74,7 @@ class Queue
             );
 
             // Also if a job was completed succesfully, give it a 1 second rest to easy down the cpu
-            sleep(1);
+            sleep($sleeptime);
         }
     }
 
@@ -85,14 +85,5 @@ class Queue
         $job->load($jobId);
         $status = $core->executeJob($job);
         return "\n" . $status;
-    }
-
-    private static function loadConfig()
-    {
-        \Config::load(
-            __DIR__ . DS . '..' . DS . 'config'
-            . DS . 'queue.php',
-            'queue'
-        );
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Core class 
+ * Core class
  *
  * PHP version 5
  *
@@ -15,7 +15,7 @@
 namespace CodeYellow\Queue;
 
 /**
- * Core class, handles all the functions for the core. 
+ * Core class, handles all the functions for the core.
  *
  * @category Utilities
  * @package  Queue
@@ -71,7 +71,7 @@ class Core
         try {
             // Update threshold for queue
             $job->getQueue()->updateExecuteAfter();
-            
+
             // Set job status
             $job->setStatus(Job::STATUS_RUNNING);
 
@@ -92,7 +92,6 @@ class Core
             $job->setTimeExecuted();
             $return = false;
         }
-        static::loadConfig();
         self::logJob($job, \Config::get('queue.log_option'));
         unset($job);
         return $return;
@@ -134,24 +133,5 @@ class Core
     public static function getJobs()
     {
         return static::$driver->getJobs();
-    }
-
-    /**
-     * Loads the config file
-     */
-    public static function loadConfig()
-    {
-        \Config::load(
-            __DIR__ . DS . '..' . DS .'..' . DS . '..' . DS . 'config'
-            . DS . 'queue.php',
-            'queue2'
-        );
-
-        // occurs when config is already loaded
-        if (!is_array(\Config::get('queue2'))) {
-            return;
-        }
-        \Config::set('queue', array_merge(\Config::get('queue2'), \Config::get('queue')));
-        \Config::delete('queue2');
     }
 }

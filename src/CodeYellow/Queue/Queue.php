@@ -1,6 +1,6 @@
 <?php
 /**
- * Queue class 
+ * Queue class
  *
  * PHP version 5
  *
@@ -15,7 +15,7 @@
 namespace CodeYellow\Queue;
 
 /**
- * Queue class, handles all the functions for the queues. 
+ * Queue class, handles all the functions for the queues.
  *
  * @category Utilities
  * @package  Queue
@@ -76,7 +76,6 @@ class Queue
      */
     public function __construct($name = null)
     {
-        Core::loadConfig();
         static::$driver = new Driver_Db;
 
         // Check if a queue needs to be loaded
@@ -106,7 +105,7 @@ class Queue
      * @param string $name                The name of the queue
      * @param int    $threshold           The threshold for the queue
      * @param int    $timeperiodThreshold The timeperiod for twhich the threshold holds
-     * 
+     *
      * @return self
      * @throws Exception_QueueAlreadyExists when a queue already exists
      */
@@ -162,7 +161,7 @@ class Queue
     ///////////////Common getters/setters///////////////////////
     /**
      * Gets the moment after which the queue may execute another job
-     * 
+     *
      * @return int time when next job may be executed
      */
     public function getExecuteAfter()
@@ -188,7 +187,7 @@ class Queue
      *
      * @param int $threshold  the new threshold of the queue
      * @param int $timeperiod the timeperiod of the threshold
-     * 
+     *
      * @return self
      */
     public function setThreshold($threshold, $timeperiod)
@@ -280,7 +279,7 @@ class Queue
 
     /**
      * Starts the queue
-     * 
+     *
      * @post queue status is set to on
      * @return self
      */
@@ -339,7 +338,7 @@ class Queue
 
     /**
      * Takes the threshold, and updates the execute after in the database
-     * 
+     *
      * @return self
      */
     public function updateExecuteAfter()
