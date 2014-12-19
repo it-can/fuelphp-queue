@@ -1,6 +1,6 @@
 <?php
 /**
- * Error class 
+ * Error class
  *
  * PHP version 5
  *

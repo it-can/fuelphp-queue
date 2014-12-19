@@ -16,7 +16,7 @@ namespace Fuel\Migrations;
 
 class CodeYellow_Queue_005_Threshold
 {
-    function up()
+    public function up()
     {
 
         //Akters jobs table
@@ -48,7 +48,7 @@ class CodeYellow_Queue_005_Threshold
         );
     }
 
-    function down()
+    public function down()
     {
         \DbUtil::add_fields(
             'queue_queues',

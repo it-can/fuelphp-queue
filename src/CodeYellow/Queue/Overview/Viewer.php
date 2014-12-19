@@ -1,6 +1,6 @@
 <?php
 /**
- * OverView_Viewer class 
+ * OverView_Viewer class
  *
  * PHP version 5
  *
@@ -33,7 +33,7 @@ class Overview_Viewer
      * @param array $options values for the template
      *
      * @return void
-     * @post template is shown.  
+     * @post template is shown.
      */
     public static function display($options)
     {

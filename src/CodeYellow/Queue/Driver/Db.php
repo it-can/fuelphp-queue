@@ -123,6 +123,7 @@ class Driver_Db implements Driver_DbInterface
                 )
             )
             ->execute();
+
         return $jobId[0];
     }
 
@@ -168,6 +169,7 @@ class Driver_Db implements Driver_DbInterface
             ->from('queue_jobs')
             ->where('id', '=', $jobId)
             ->execute();
+
         return $sql->current();
     }
 
@@ -212,8 +214,8 @@ class Driver_Db implements Driver_DbInterface
     /**
      * adds a new queue
      *
-     * @param string $name        queue string
-     * @param int    $status      status of the queue
+     * @param string $name                queue string
+     * @param int    $status              status of the queue
      * @param int    $threshold           the theshold of max items executed of the queue
      * @param int    $timeperiodThreshold the timeperiod for which the threshold holds
      *
@@ -226,6 +228,7 @@ class Driver_Db implements Driver_DbInterface
             ->columns(array('name', 'status', 'threshold', 'timeperiod_threshold'))
             ->values(array($name, $status, $threshold, $timeperiodThreshold))
             ->execute();
+
         return $this->selectQueueIdByName($name);
 
     }
@@ -243,6 +246,7 @@ class Driver_Db implements Driver_DbInterface
             ->from('queue_queues')
             ->where('name', '=', $name)
             ->execute();
+
         return $sql->get('id');
     }
 
@@ -286,6 +290,7 @@ class Driver_Db implements Driver_DbInterface
                     ->from('queue_queues')
                     ->where('id', '=', $queueId)
                     ->execute();
+
         return $sql->current();
     }
 

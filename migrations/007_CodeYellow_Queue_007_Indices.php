@@ -16,7 +16,7 @@ namespace Fuel\Migrations;
 
 class Codeyellow_queue_007_Indices
 {
-    function up()
+    public function up()
     {
         \DBUtil::create_index(
             'queue_jobs',
@@ -35,7 +35,7 @@ class Codeyellow_queue_007_Indices
         );
     }
 
-    function down()
+    public function down()
     {
         \DBUtil::drop_index('queue_jobs', 'jobs_select_status');
         \DBUtil::drop_index('queue_jobs', 'jobs_select_execute_after');

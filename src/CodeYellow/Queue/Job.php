@@ -130,7 +130,7 @@ class Job
      *
      * @return id
      * @throws Exception_InvalidArguments when the args parameter is not an array
-     * @throws Exception_QueueNotExist when the queue doesn't exists
+     * @throws Exception_QueueNotExist    when the queue doesn't exists
      */
     public function create(
         $class,
@@ -205,6 +205,7 @@ class Job
         }
 
         $this->loadFromArray($job);
+
         return $this;
     }
 
@@ -228,6 +229,7 @@ class Job
         $this->status = $job['status'];
         $this->class = $job['class'];
         $this->function = $job['function'];
+
         return $this;
     }
 
@@ -238,6 +240,7 @@ class Job
     private function encodeArgs($args)
     {
         $this->encodeArgsRec($args);
+
         return json_encode($args);
     }
 
@@ -260,7 +263,6 @@ class Job
         }
     }
 
-
     /**
      * Decodes the args such that arrays and objects can be differentiated
      */
@@ -268,6 +270,7 @@ class Job
     {
         $args = json_decode($args, true);
         $this->decodeArgsRec($args);
+
         return (array)$args;
     }
 
@@ -325,9 +328,9 @@ class Job
     {
         $this->class = $class;
         $this->save();
+
         return $this;
     }
-
 
     /**
      * Get the function
@@ -351,6 +354,7 @@ class Job
     {
         $this->function = $function;
         $this->save();
+
         return $this;
     }
 
@@ -376,6 +380,7 @@ class Job
     {
         $this->args = $args;
         $this->save();
+
         return $this;
     }
 
@@ -401,6 +406,7 @@ class Job
     {
         $this->executeAfter = $time;
         $this->save();
+
         return $this;
     }
 
@@ -436,6 +442,7 @@ class Job
     {
         $this->queueId = $queueId;
         $this->save();
+
         return $this;
     }
 
@@ -471,6 +478,7 @@ class Job
     {
         $this->status = $newStatus;
         $this->save();
+
         return $this;
     }
 
@@ -494,6 +502,7 @@ class Job
     {
         $this->timeExecuted = time();
         $this->save();
+
         return $this;
     }
 
@@ -518,6 +527,7 @@ class Job
     {
         $this->priority = $priority;
         $this->save();
+
         return $this;
     }
 

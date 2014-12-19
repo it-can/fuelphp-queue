@@ -57,7 +57,6 @@ class Test_Queues extends \PHPUnit_Framework_TestCase
         $this->assertEquals($timespanThreshold, $testQueue->getThreshold()['timeperiod']);
     }
 
-
     // Tests if saving the queue works
     /**
     * @group queue-queues-save
@@ -72,7 +71,6 @@ class Test_Queues extends \PHPUnit_Framework_TestCase
         $statusAfter = Queue::STATUS_DELETED;
         $thresholdAfter = 20;
         $timespanThresholdAfter = 7200;
-
 
         $testQueue = new Queue; // Used to create and edit a queue
         $testQueue2 = new Queue; // Test if the changes are saved to the database

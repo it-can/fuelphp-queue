@@ -1,6 +1,6 @@
 <?php
 /**
- * Controller for the template 
+ * Controller for the template
  *
  * PHP version 5
  *
@@ -15,7 +15,7 @@
 namespace CodeYellow\Queue;
 
 /**
- * Controller for the template  
+ * Controller for the template
  *
  * @category Utilities
  * @package  Queue
@@ -30,7 +30,7 @@ class Overview_Controller extends \Controller
 {
     /**
      * Load the config file
-     * 
+     *
      * @post queue config is available
      */
     public function __construct()
@@ -58,7 +58,7 @@ class Overview_Controller extends \Controller
     }
 
     /**
-     * Deletes a job from the queue. 
+     * Deletes a job from the queue.
      *
      * @param int $jobId id of the queue entry to be deleted
      *

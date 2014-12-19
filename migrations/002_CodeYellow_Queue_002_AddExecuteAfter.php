@@ -18,14 +18,14 @@ namespace Fuel\Migrations;
  */
 class CodeYellow_Queue_002_AddExecuteAfter
 {
-    function up()
+    public function up()
     {
         \DBUtil::add_fields('queue', array(
             'execute_after' => array('constraint' => 11, 'type' => 'int')
         ));
     }
 
-    function down()
+    public function down()
     {
         \DBUtil::drop_fields('queue', array(
             'execute_after'

@@ -84,6 +84,7 @@ class Queue
         $job = new \CodeYellow\Queue\Job();
         $job->load($jobId);
         $status = $core->executeJob($job);
+
         return "\n" . $status;
     }
 }

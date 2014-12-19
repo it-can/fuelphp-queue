@@ -1,6 +1,6 @@
 <?php
 /**
- * Driver interface 
+ * Driver interface
  *
  * PHP version 5
  *
@@ -92,11 +92,10 @@ interface Driver_DbInterface
     /**
      * Finds the next job in line to be executed
      *
-     * @param array $excludedQueues queues that need to be excluded.
-     * @return int job id or null if no next job is available
+     * @param  array $excludedQueues queues that need to be excluded.
+     * @return int   job id or null if no next job is available
      */
     public function getNextJob();
-
 
     /**
      * Delete a job from the database
@@ -109,8 +108,8 @@ interface Driver_DbInterface
     /**
      * adds a new queue
      *
-     * @param string $name        queue string
-     * @param int    $status      status of the queue
+     * @param string $name                queue string
+     * @param int    $status              status of the queue
      * @param int    $threshold           the theshold of max items executed of the queue
      * @param int    $timeperiodThreshold the timeperiod for which the threshold holds
      *
@@ -136,7 +135,7 @@ interface Driver_DbInterface
      * @param int    $status              new queue status
      * @param int    $threshold           the theshold of max items executed of the queue
      * @param int    $timeperiodThreshold the timeperiod for which the threshold holds
-     * 
+     *
      * @return void
      * @post queue is saved to database
      */
@@ -153,7 +152,7 @@ interface Driver_DbInterface
 
     /**
      * Updates the execute after time
-     * 
+     *
      * @param int $queueId      The queue to be updated
      * @param int $executeAfter The time after which the next job may be executed
      */

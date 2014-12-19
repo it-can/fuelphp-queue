@@ -16,7 +16,7 @@ namespace Fuel\Migrations;
 
 class CodeYellow_Queue_006_PayloadSize
 {
-    function up()
+    public function up()
     {
         \DBUtil::modify_fields('queue_jobs', array(
             'payload' => array(
@@ -25,7 +25,7 @@ class CodeYellow_Queue_006_PayloadSize
         ));
     }
 
-    function down()
+    public function down()
     {
         \DBUtil::modify_fields('queue_jobs', array(
             'payload' => array(

@@ -20,10 +20,10 @@ namespace CodeYellow\Queue;
  */
 class Test_Errors extends \PHPUnit_Framework_TestCase
 {
-    static $queue = null;
+    public static $queue = null;
 
     // Prevents double queues from forming
-    public function __construct() 
+    public function __construct()
     {
         if (static::$queue !== null) {
             return;
@@ -36,7 +36,7 @@ class Test_Errors extends \PHPUnit_Framework_TestCase
 
     /**
       * Creates a new job
-      * 
+      *
       * @return Job a new job
       */
     private function getNewJob()
@@ -52,9 +52,9 @@ class Test_Errors extends \PHPUnit_Framework_TestCase
         $job = new Job;
         $job->create($class, $method,
              $args, $queueId, $priority, $executeAfter);
+
         return $job;
     }
-
 
     ///////////////////////////TESTS////////////////////////////////
 
@@ -67,5 +67,5 @@ class Test_Errors extends \PHPUnit_Framework_TestCase
         $me = $error->getErrorByJobId($job->getId());
         $this->assertEquals($job->getId(), $me['job_id']);
         $this->assertNotEmpty($me['error_messages']);
-    }  
+    }
 }

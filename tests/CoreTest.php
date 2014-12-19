@@ -20,11 +20,11 @@ namespace CodeYellow\Queue;
  */
 class Test_Core extends \PHPUnit_Framework_TestCase
 {
-    static $queue = null;
-    static $core = null;
+    public static $queue = null;
+    public static $core = null;
 
     // Prevents double queues from forming
-    public function __construct() 
+    public function __construct()
     {
         static::$core = new Core;
 
@@ -39,7 +39,7 @@ class Test_Core extends \PHPUnit_Framework_TestCase
 
     /**
        * Creates a new job
-       * 
+       *
        * @return Job a new job
        */
     private static function getNewJob()
@@ -52,6 +52,7 @@ class Test_Core extends \PHPUnit_Framework_TestCase
         $executeAfter = 10;
         $startTime = time();
         $job = new Job;
+
         return $job->create($class, $method, $args, $queueId, $priority, $executeAfter);
     }
 
@@ -68,7 +69,6 @@ class Test_Core extends \PHPUnit_Framework_TestCase
         \DB::delete('queue_jobs')
             ->execute();
     }
-
 
     ///////////////////////////TESTS////////////////////////////////
 
@@ -89,7 +89,6 @@ class Test_Core extends \PHPUnit_Framework_TestCase
         // Changes to job, You can assume that $job->setStatus works
         $job[1]->setStatus(Job::STATUS_DELETED);
         $job[2]->setStatus(Job::STATUS_DONE);
-
 
         $me = static::$core->getJobs();
 
@@ -189,7 +188,6 @@ class Test_Core extends \PHPUnit_Framework_TestCase
         $this->assertTrue(static::$core->executeJob($job1));
         $this->assertEquals($job1->getStatus(), Job::STATUS_DONE);
 
-
         // // A bad job  should return false
         $job2->setFunction('withException');
         $this->assertFalse(static::$core->executeJob($job2));
@@ -219,13 +217,11 @@ class Test_Core extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_object($job2->getArgs()['a']), "'a' should be an object");
     }
 
-
     // Tests if the threshold works
     public function testThreshold()
     {
         // Set the threshold
         static::$queue->setThreshold(10, 3600)->updateExecuteAfter();
-
 
         // Get a new jobs
         $job1 = static::getNewJob();
@@ -270,6 +266,5 @@ class Test_Core extends \PHPUnit_Framework_TestCase
         unlink('/tmp/test');
         $this->assertNotEmpty($file);
     }
-
 
 }

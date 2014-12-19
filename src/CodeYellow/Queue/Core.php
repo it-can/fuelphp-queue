@@ -55,6 +55,7 @@ class Core
 
         $job = new Job();
         $job->loadFromArray($jobArray);
+
         return $job;
     }
 
@@ -94,6 +95,7 @@ class Core
         }
         self::logJob($job, \Config::get('queue.log_option'));
         unset($job);
+
         return $return;
     }
 

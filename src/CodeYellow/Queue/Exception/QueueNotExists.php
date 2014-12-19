@@ -15,7 +15,7 @@
 namespace CodeYellow\Queue\Exception;
 
 /**
- * QueueNotExists  thrown when an action is performed on a 
+ * QueueNotExists  thrown when an action is performed on a
  * non existent queue.
  *
  * @category Utilities

@@ -18,7 +18,7 @@ namespace Fuel\Migrations;
  */
 class CodeYellow_Queue_003_NewVersion
 {
-    function up()
+    public function up()
     {
 
         //Queue job table. Raname + add_fields
@@ -28,7 +28,7 @@ class CodeYellow_Queue_003_NewVersion
             'queue_id' => array(
                 'type' => 'int',
                 'constraint' => 10,
-                'unsigned' => true 
+                'unsigned' => true
             ),
             'time_added' => array(
                 'type' => 'int',
@@ -50,11 +50,11 @@ class CodeYellow_Queue_003_NewVersion
                 'type' => 'int',
                 'constraint' => 10,
                 'auto_increment' => true,
-                'unsigned' => true 
+                'unsigned' => true
             ),
             'name' => array(
                 'type' => 'varchar',
-                'constraint' => 255 
+                'constraint' => 255
             ),
             'max_items_hour' => array(
                 'type' => 'int',
@@ -67,7 +67,7 @@ class CodeYellow_Queue_003_NewVersion
                 'default' => 0
             ),
         ), array(
-            'id' 
+            'id'
         ));
 
         //queue_error
@@ -76,18 +76,18 @@ class CodeYellow_Queue_003_NewVersion
                 'type' => 'int',
                 'constraint' => 10,
                 'auto_increment' => true,
-                'unsigned' => true 
+                'unsigned' => true
             ),
             'job_id' => array(
                 'type' => 'int',
                 'constraint' => 10,
-                'unsigned' => true 
+                'unsigned' => true
             ),
             'error_messages' => array(
                 'type' => 'text',
             ),
         ), array(
-            'id' 
+            'id'
         ));
 
         //Add foreign keys
@@ -110,7 +110,7 @@ class CodeYellow_Queue_003_NewVersion
         ));
     }
 
-    function down()
+    public function down()
     {
         //Drop foreign keys
         \DBUtil::drop_foreign_key('queue_jobs','queue_job_queue');

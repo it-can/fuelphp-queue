@@ -12,7 +12,6 @@
  * @link      https://bitbucket.org/codeyellow/fuelphp-queue/
  */
 
-
 return array(
     /*
     * Not database related config options

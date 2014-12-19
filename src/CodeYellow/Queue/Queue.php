@@ -72,7 +72,7 @@ class Queue
      *
      * @post driver variable contains the driver
      * @throws queueNotExists exception if a non existed queue
-     *  is opened, and explicit creation is disabled
+     *                        is opened, and explicit creation is disabled
      */
     public function __construct($name = null)
     {
@@ -96,8 +96,6 @@ class Queue
             }
         }
     }
-
-
 
     /**
      * Create a new queue
@@ -127,6 +125,7 @@ class Queue
         $this->threshold = $threshold;
         $this->timeperiodThreshold = $timeperiodThreshold;
         $this->executeAfter = 0;
+
         return $this;
     }
 
@@ -155,8 +154,6 @@ class Queue
         $this->timeperiodThreshold = $queue['timeperiod_threshold'];
         $this->executeAfter = $queue['execute_after'];
     }
-
-
 
     ///////////////Common getters/setters///////////////////////
     /**
@@ -210,6 +207,7 @@ class Queue
                 )
             );
         }
+
         return $this;
     }
 
@@ -249,9 +247,9 @@ class Queue
 
         $this->name = $name;
         $this->saveQueue();
+
         return $this;
     }
-
 
     /**
      * Get the items Status
@@ -274,6 +272,7 @@ class Queue
     {
         $this->status = static::STATUS_DELETED;
         $this->saveQueue();
+
         return $this;
     }
 
@@ -287,6 +286,7 @@ class Queue
     {
         $this->status = static::STATUS_ON;
         $this->saveQueue();
+
         return $this;
     }
 
@@ -300,6 +300,7 @@ class Queue
     {
         $this->status = static::STATUS_OFF;
         $this->saveQueue();
+
         return $this;
     }
 
@@ -351,6 +352,7 @@ class Queue
         // Else calculate the new execute after
         $this->executeAfter = time() + ceil($this->timeperiodThreshold / $this->threshold);
         static::$driver->setExecuteAfter($this->queueId, $this->executeAfter);
+
         return $this;
     }
 }

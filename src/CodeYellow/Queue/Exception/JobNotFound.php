@@ -15,7 +15,7 @@
 namespace CodeYellow\Queue\Exception;
 
 /**
- * JobNotFound exception, thrown when someone tries to open or 
+ * JobNotFound exception, thrown when someone tries to open or
  * edit a job that does not exist.
  *
  * @category Utilities

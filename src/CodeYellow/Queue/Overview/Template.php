@@ -1,6 +1,6 @@
 <?php
 /**
- * Template to show the status of the queue 
+ * Template to show the status of the queue
  *
  * PHP version 5
  *
@@ -37,7 +37,7 @@
                 <td><?php echo $job['payload'];?></td>
                 <td><?php echo $job['time_added'];?></td>
                 <td><?php echo $job['time_executed'];?></td>
-                <td><?php 
+                <td><?php
                         switch($job['status']):
                             case \CodeYellow\Queue\Job::STATUS_IN_QUEUE: echo 'Waiting'; break;
                             case \CodeYellow\Queue\Job::STATUS_RUNNING: echo 'Busy'; break;

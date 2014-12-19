@@ -16,7 +16,7 @@ namespace Fuel\Migrations;
 
 class CodeYellow_Queue_004_JobsClassFunction
 {
-    function up()
+    public function up()
     {
 
         //Akters jobs table
@@ -27,7 +27,7 @@ class CodeYellow_Queue_004_JobsClassFunction
             ),
             'function' => array(
                 'type' => 'varchar',
-                'constraint' => 255, 
+                'constraint' => 255,
             ),
         ));
 
@@ -37,7 +37,7 @@ class CodeYellow_Queue_004_JobsClassFunction
         ));
     }
 
-    function down()
+    public function down()
     {
         //Revert changes to queue table
         \DBUtil::drop_fields('queue_jobs', array(
@@ -47,7 +47,7 @@ class CodeYellow_Queue_004_JobsClassFunction
 
         \DBUtil::add_fields('queue_jobs',array(
             'queue' => array(
-                'type' => 'varchar', 
+                'type' => 'varchar',
                 'constraint' => '40'
             ),
         ));

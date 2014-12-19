@@ -21,8 +21,8 @@ namespace CodeYellow\Queue;
 class Test_Jobs extends \PHPUnit_Framework_TestCase
 {
 
-    static $queue = null;
-    static $queue2 = null;
+    public static $queue = null;
+    public static $queue2 = null;
 
     // Prevents double queues from forming
     public function __construct()
@@ -39,7 +39,6 @@ class Test_Jobs extends \PHPUnit_Framework_TestCase
         static::$queue2 = new Queue;
         static::$queue2->create($queueName);
     }
-
 
     ///////////////////////////TESTS////////////////////////////////
     
@@ -112,7 +111,6 @@ class Test_Jobs extends \PHPUnit_Framework_TestCase
         $job = new Job('Test', 'Test', array(), static::$queue->getId());
         $this->assertEquals(Job::PRIORITY_MEDIUM, $job->getPriority());
     }
-
 
     // Test if args = null no exception occurs
     public function testCreateNullArgumentsNoException()
@@ -316,7 +314,6 @@ class Test_Jobs extends \PHPUnit_Framework_TestCase
             $priority,
             $executeAfter
         );
-
 
     }
 }
