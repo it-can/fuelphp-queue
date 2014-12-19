@@ -1,5 +1,5 @@
 # Introduction
-Fuel-Queue is a queue system for FuelPHP's Oil Module. It is inspired by the fuel-queue package from Kavinsky (https://github.com/kavinsky/fuel-queue).
+Fuel-Queue is a queue system for FuelPHP's Oil Module. It is inspired by the fuel-queue package from Kavinsky (https://github.com/kavinsky/fuel-queue) and (https://bitbucket.org/codeyellow/queue).
 
 # Features
 * Simple usage, easy to integrate in your project.
@@ -20,7 +20,7 @@ include_once VENDORPATH . 'codeyellow' . DS . 'queue' . DS . 'tasks' . DS . 'que
 ```
 Run migrations from the command line:
 
-``` 
+```
 php oil r migrate --all
 ```
 
@@ -80,12 +80,12 @@ A job can be created easily be created from the constructor
 $job = new \CodeYellow\Queue\Job(string $class, string $method, array $args, int $queueId, $priority = 0, $executeAfter = 0);
 ```
 
-## Errors 
+## Errors
 
 When an exception occurs while a job is processed, the error is logged. The error for a job can easily be retrieved:
 
 ```php
-<?php 
+<?php
 $message = \CodeYellow\Queue\Error::getErrorById(int $jobId);
 ```
 $message will now consists of the error message of the job, or null no error has occurred for the job.
@@ -97,14 +97,14 @@ Assuming that a Queue named default is made, the minimal code to run a job is:
 $queue = new \Queue\Queue('default')->startQueue();
 
 new \Queue\Job(
-    'Controller_Test', 
-    'test_function', 
+    'Controller_Test',
+    'test_function',
     array('argument1'),
     $queue->getId()
-); 
+);
 ```
 
 # Flow Chart
-Beneath is the flow chart of the major use cases: 
+Beneath is the flow chart of the major use cases:
 
 ![Alt text](http://codeyellow.nl/images/queueFlowDiagram.svg)
