@@ -54,6 +54,16 @@ return array(
 );
 ```
 
+Add this to your _always_load_ section in fuel/app/config.php (just add it, don't remove the whole always_load section)
+```php
+'always_load' => array(
+    'config' => array(
+        'queue',
+    ),
+);
+```
+
+
 Make a new file in fuel/app/tasks with the name queue.php on your application with the follow code:
 
 ```php
