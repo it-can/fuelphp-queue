@@ -116,7 +116,7 @@ $job = new \CodeYellow\Queue\Job(
     'test_function',
     array('argument1'),
     $queue->getId(),
-    Job::PRIORITY_MEDIUM,
+    \CodeYellow\Queue\Job::PRIORITY_MEDIUM,
     strtotime('now + 5 minutes')
 );
 ```
