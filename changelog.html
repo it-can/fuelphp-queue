@@ -1,0 +1,23 @@
+<html>
+	<body>
+		<h4>2.1.2</h4>
+		<ul>
+			<li>Added changelog</li>
+		</ul>
+		<h4>2.1.1</h4>
+		<ul>
+			<li>Fixed error in the readme file with regards to the task</li>
+			<li>Fixed an error where if a queue with non existing id was opened, an unexpected exception was thrown.</li>
+		</ul>
+
+		<h4>2.1.0</h4>
+		<ul>
+			<li>Thresholding. It is now possible to set a time duration and a maximum amount of jobs that can be executed by a queue. The queuing system will make sure that the jobs will be executed balanced over that timespan.</li>
+			<li>Chaining. Methods on objects can now be chained.</li>
+			<li>Implicit queue creation. Queues will now implicitly be created when an action is performed on a non-existent queue. It is possible to turn this feature of from the config file</li>
+			<li>Loading from constructor. Loading a queue or a job can now be done from the constructor. </li>
+			<li>PHPDoc documentation is added</li>
+			<li>Composer.json is updated and made better. </li>
+		</ul>
+	</body>
+</html>

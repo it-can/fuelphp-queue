@@ -1,0 +1,31 @@
+{
+    "name": "codeyellow/queue",
+    "type": "library",
+    "description": "Queue is a queuing system for FuelPHP",
+    "keywords": ["Queue", "FuelPHP", "Job"],
+    "homepage": "http://www.codeyellow.nl",
+    "license": "MIT",
+    "support": {
+        "email": "stefan@codeyellow.nl",
+        "source": "https://bitbucket.org/codeyellow/queue/src",
+        "issues": "https://bitbucket.org/codeyellow/queue/issues"
+    },
+    "authors": [
+        {
+            "name": "Stefan Majoor",
+            "email": "stefan@codeyellow.nl"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "1.*",
+        "phpmd/phpmd" : "1.4.*",
+        "phpunit/phpunit": "3.7.*",
+        "phpdocumentor/phpdocumentor": "v2.3.2"
+    },
+    "autoload": {
+        "psr-0": { "CodeYellow\\Queue\\": "src/" }
+    }
+}
