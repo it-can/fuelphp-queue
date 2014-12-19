@@ -75,15 +75,15 @@ class Driver_Db implements Driver_DbInterface
      */
     public function getErrorByJobId($jobId)
     {
-        $sql = \Db::select()
+        $sql = \DB::select()
                     ->from('queue_errors')
                     ->where('job_id', '=', $jobId)
                     ->execute()
                     ->as_array();
-                    
+
         return isset($sql[0]) ? $sql[0] : null;
     }
-    
+
     /*****************JOBS*********************************************/
     /**
      * Creates a new job
@@ -192,7 +192,7 @@ class Driver_Db implements Driver_DbInterface
                     ->limit(1)
                     ->execute()
                     ->as_array();
-                    
+
         // Sql is not necessarily an object. Do not change this to $sql->current()
         return isset($sql[0]) ? $sql[0] : null;
     }
@@ -254,7 +254,7 @@ class Driver_Db implements Driver_DbInterface
      * @param int    $status              new queue status
      * @param int    $threshold           the theshold of max items executed of the queue
      * @param int    $timeperiodThreshold the timeperiod for which the threshold holds
-     * 
+     *
      * @return void
      * @post queue is saved to database
      */
@@ -291,7 +291,7 @@ class Driver_Db implements Driver_DbInterface
 
     /**
      * Updates the execute after time
-     * 
+     *
      * @param int $queueId      The queue to be updated
      * @param int $executeAfter The time after which the next job may be executed
      */

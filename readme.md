@@ -86,7 +86,8 @@ When an exception occurs while a job is processed, the error is logged. The erro
 
 ```php
 <?php
-$message = \CodeYellow\Queue\Error::getErrorById(int $jobId);
+$error = new \CodeYellow\Queue\Error;
+$message = $error->getErrorByJobId(int $jobId);
 ```
 $message will now consists of the error message of the job, or null no error has occurred for the job.
 
@@ -94,13 +95,16 @@ $message will now consists of the error message of the job, or null no error has
 Assuming that a Queue named default is made, the minimal code to run a job is:
 
 ```
-$queue = new \Queue\Queue('default')->startQueue();
+$queue = new \CodeYellow\Queue\Queue('default');
+$queue->startQueue();
 
-new \Queue\Job(
+$job = new \CodeYellow\Queue\Job(
     'Controller_Test',
     'test_function',
     array('argument1'),
-    $queue->getId()
+    $queue->getId(),
+    Job::PRIORITY_MEDIUM,
+    strtotime('now + 5 minutes')
 );
 ```
 
