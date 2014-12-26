@@ -36,7 +36,8 @@ class Queue
         $core = new \CodeYellow\Queue\Core;
 
         $cmd = \Config::get('queue.queue_command');
-        $sleeptime = \Config::get('queue.sleep', 10);
+        $sleep = \Config::get('queue.sleep', 10);
+        $polling_sleep = \Config::get('queue.polling_sleep', 30);
 
         \Cli::write('Starting Queue');
         while ($maxJobs-- != 0) {
@@ -47,7 +48,7 @@ class Queue
             // Check if a job is available. If not, wait and try again
             if ($job == null) {
                 \Cli::write("No job found");
-                sleep($sleeptime);
+                sleep($polling_sleep);
                 // Sleep disabled for testing
                 continue;
             }
@@ -73,8 +74,8 @@ class Queue
                 ' Memory usage:  ' . memory_get_usage()
             );
 
-            // Also if a job was completed succesfully, give it a 1 second rest to easy down the cpu
-            sleep($sleeptime);
+            // Also if a job was completed succesfully, give it a couple seconds rest to easy down the cpu
+            sleep($sleep);
         }
     }
 

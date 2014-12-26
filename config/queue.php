@@ -44,7 +44,12 @@ return array(
     'log_file' => './queue.log',
 
     /**
-     * Set sleep time in seconds
+     * Set sleep time in seconds for queue polling
+     */
+    'polling_sleep' => 30,
+
+    /**
+     * Set sleep time in seconds after job execution
      */
     'sleep' => 10,
 );
