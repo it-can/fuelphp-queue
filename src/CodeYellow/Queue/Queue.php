@@ -25,8 +25,8 @@ namespace CodeYellow\Queue;
  */
 class Queue
 {
-    const STATUS_OFF = 0;
-    const STATUS_ON = 1;
+    const STATUS_OFF     = 0;
+    const STATUS_ON      = 1;
     const STATUS_DELETED = 2;
 
     /**
@@ -120,11 +120,11 @@ class Queue
             $timeperiodThreshold
         );
 
-        $this->name = $name;
-        $this->status = static::STATUS_OFF;
-        $this->threshold = $threshold;
+        $this->name                = $name;
+        $this->status              = static::STATUS_OFF;
+        $this->threshold           = $threshold;
         $this->timeperiodThreshold = $timeperiodThreshold;
-        $this->executeAfter = 0;
+        $this->executeAfter        = 0;
 
         return $this;
     }
@@ -147,12 +147,12 @@ class Queue
             );
         }
 
-        $this->queueId = $queue['id'];
-        $this->name = $queue['name'];
-        $this->status = $queue['status'];
-        $this->threshold = $queue['threshold'];
+        $this->queueId             = $queue['id'];
+        $this->name                = $queue['name'];
+        $this->status              = $queue['status'];
+        $this->threshold           = $queue['threshold'];
         $this->timeperiodThreshold = $queue['timeperiod_threshold'];
-        $this->executeAfter = $queue['execute_after'];
+        $this->executeAfter        = $queue['execute_after'];
     }
 
     ///////////////Common getters/setters///////////////////////
@@ -189,7 +189,7 @@ class Queue
      */
     public function setThreshold($threshold, $timeperiod)
     {
-        $this->threshold = $threshold;
+        $this->threshold           = $threshold;
         $this->timeperiodThreshold = $timeperiod;
         $this->saveQueue();
 

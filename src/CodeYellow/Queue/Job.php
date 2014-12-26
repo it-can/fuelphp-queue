@@ -25,18 +25,18 @@ namespace CodeYellow\Queue;
  */
 class Job
 {
-    const STATUS_IN_QUEUE = 0;
-    const STATUS_RUNNING = 1;
-    const STATUS_DONE = 2;
-    const STATUS_FAILED = 3;
-    const STATUS_DELETED = 4;
+    const STATUS_IN_QUEUE   = 0;
+    const STATUS_RUNNING    = 1;
+    const STATUS_DONE       = 2;
+    const STATUS_FAILED     = 3;
+    const STATUS_DELETED    = 4;
 
-    const PRIORITY_VERYLOW = 0;
-    const PRIORITY_LOW = 1;
-    const PRIORITY_MEDIUM = 2;
-    const PRIORITY_HIGH = 3;
+    const PRIORITY_VERYLOW  = 0;
+    const PRIORITY_LOW      = 1;
+    const PRIORITY_MEDIUM   = 2;
+    const PRIORITY_HIGH     = 3;
     const PRIORITY_VERYHIGH = 4;
-    const PRIORITY_SYSTEM = 5;
+    const PRIORITY_SYSTEM   = 5;
 
     /**
      * The driver that is used
@@ -105,11 +105,11 @@ class Job
      * @post driver variable contains the driver
      */
     public function __construct(
-        $class = null,
-        $method = null,
-        $args = null,
-        $queueId = null,
-        $priority = Job::PRIORITY_MEDIUM,
+        $class        = null,
+        $method       = null,
+        $args         = null,
+        $queueId      = null,
+        $priority     = Job::PRIORITY_MEDIUM,
         $executeAfter = 0
     ) {
         static::$driver = new Driver_Db;
@@ -165,7 +165,7 @@ class Job
         $this->function = $method;
         $this->args = $args;
         $this->queueId = $queueId;
-        $this->executeAfter = $executeAfter;
+        $this->executeAfter = ($executeAfter === 0) ? time() : $executeAfter;
         $this->timeAdded = time();
         $this->timeExecuted = 0;
         $this->priority = $priority;
@@ -173,15 +173,15 @@ class Job
 
         $this->jobId = static::$driver->createJob(
             array(
-                'class' => $this->class,
-                'function' => $this->function,
-                'args' => $this->encodeArgs($this->args),
-                'queue_id' => $this->queueId,
-                'priority' => $this->priority,
+                'class'         => $this->class,
+                'function'      => $this->function,
+                'args'          => $this->encodeArgs($this->args),
+                'queue_id'      => $this->queueId,
+                'priority'      => $this->priority,
                 'execute_after' => $this->executeAfter,
-                'status' => $this->status,
+                'status'        => $this->status,
                 'time_executed' => $this->timeExecuted,
-                'time_added' => $this->timeAdded,
+                'time_added'    => $this->timeAdded,
             )
         );
 
@@ -219,16 +219,16 @@ class Job
      */
     public function loadFromArray($job)
     {
-        $this->jobId = $job['id'];
-        $this->priority = $job['priority'];
-        $this->args = $this->decodeArgs($job['payload']);
+        $this->jobId        = $job['id'];
+        $this->priority     = $job['priority'];
+        $this->args         = $this->decodeArgs($job['payload']);
         $this->executeAfter = $job['execute_after'];
-        $this->queueId = $job['queue_id'];
-        $this->timeAdded = $job['time_added'];
+        $this->queueId      = $job['queue_id'];
+        $this->timeAdded    = $job['time_added'];
         $this->timeExecuted = $job['time_executed'];
-        $this->status = $job['status'];
-        $this->class = $job['class'];
-        $this->function = $job['function'];
+        $this->status       = $job['status'];
+        $this->class        = $job['class'];
+        $this->function     = $job['function'];
 
         return $this;
     }
@@ -551,15 +551,15 @@ class Job
         static::$driver->saveJob(
             $this->jobId,
             array(
-                'class' => $this->class,
-                'function' => $this->function,
-                'args' => $this->encodeArgs($this->args),
-                'queue_id' => $this->queueId,
-                'priority' => $this->priority,
+                'class'         => $this->class,
+                'function'      => $this->function,
+                'args'          => $this->encodeArgs($this->args),
+                'queue_id'      => $this->queueId,
+                'priority'      => $this->priority,
                 'execute_after' => $this->executeAfter,
-                'status' => $this->status,
+                'status'        => $this->status,
                 'time_executed' => $this->timeExecuted,
-                'time_added' => $this->timeAdded,
+                'time_added'    => $this->timeAdded,
             )
         );
     }
