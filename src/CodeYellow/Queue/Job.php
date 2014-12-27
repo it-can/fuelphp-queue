@@ -94,6 +94,11 @@ class Job
     public $status = null;
 
     /**
+     * Amount of memory used by job
+     */
+    public $memory = 0;
+
+    /**
      * Load the driver
      *
      * @param string $class        The class that needs to be called
@@ -161,15 +166,16 @@ class Job
             }
         }
 
-        $this->class = $class;
-        $this->function = $method;
-        $this->args = $args;
-        $this->queueId = $queueId;
+        $this->class        = $class;
+        $this->function     = $method;
+        $this->args         = $args;
+        $this->queueId      = $queueId;
         $this->executeAfter = ($executeAfter === 0) ? time() : $executeAfter;
-        $this->timeAdded = time();
+        $this->timeAdded    = time();
         $this->timeExecuted = 0;
-        $this->priority = $priority;
-        $this->status = static::STATUS_IN_QUEUE;
+        $this->priority     = $priority;
+        $this->status       = static::STATUS_IN_QUEUE;
+        $this->memory       = 0;
 
         $this->jobId = static::$driver->createJob(
             array(
@@ -182,6 +188,7 @@ class Job
                 'status'        => $this->status,
                 'time_executed' => $this->timeExecuted,
                 'time_added'    => $this->timeAdded,
+                'memory'        => $this->memory,
             )
         );
 
@@ -229,6 +236,7 @@ class Job
         $this->status       = $job['status'];
         $this->class        = $job['class'];
         $this->function     = $job['function'];
+        $this->memory       = $job['memory'];
 
         return $this;
     }
@@ -467,6 +475,16 @@ class Job
     }
 
     /**
+     * Get memory usage of job
+     *
+     * @return int memory amount used
+     */
+    public function getMemoryUsage()
+    {
+        return (int) $this->memory;
+    }
+
+    /**
      * Sets status to running
      *
      * @param int $newStatus the new status of this queue
@@ -477,6 +495,21 @@ class Job
     public function setStatus($newStatus)
     {
         $this->status = $newStatus;
+        $this->save();
+
+        return $this;
+    }
+
+    /**
+     * Sets memory usage
+     *
+     * @param int $memoryStart Memory at start
+     *
+     * @return self
+     */
+    public function setMemoryUsage($memoryStart)
+    {
+        $this->memory = (memory_get_usage() - $memoryStart);
         $this->save();
 
         return $this;
@@ -560,6 +593,7 @@ class Job
                 'status'        => $this->status,
                 'time_executed' => $this->timeExecuted,
                 'time_added'    => $this->timeAdded,
+                'memory'        => $this->memory,
             )
         );
     }

@@ -106,7 +106,8 @@ class Driver_Db implements Driver_DbInterface
                     'time_executed',
                     'status',
                     'class',
-                    'function'
+                    'function',
+                    'memory',
                 )
             )
             ->values(
@@ -119,7 +120,8 @@ class Driver_Db implements Driver_DbInterface
                     $options['time_executed'],
                     $options['status'],
                     $options['class'],
-                    $options['function']
+                    $options['function'],
+                    $options['memory'],
                 )
             )
             ->execute();
@@ -141,15 +143,16 @@ class Driver_Db implements Driver_DbInterface
         \DB::update('queue_jobs')
             ->set(
                 array(
-                    'priority' => $options['priority'],
-                    'payload' => $options['args'],
+                    'priority'      => $options['priority'],
+                    'payload'       => $options['args'],
                     'execute_after' => $options['execute_after'],
-                    'queue_id' => $options['queue_id'],
-                    'time_added' => $options['time_added'],
+                    'queue_id'      => $options['queue_id'],
+                    'time_added'    => $options['time_added'],
                     'time_executed' => $options['time_executed'],
-                    'status' => $options['status'],
-                    'class' => $options['class'],
-                    'function' => $options['function']
+                    'status'        => $options['status'],
+                    'class'         => $options['class'],
+                    'function'      => $options['function'],
+                    'memory'        => $options['memory'],
                 )
             )
             ->where('id', $jobId)
@@ -267,9 +270,9 @@ class Driver_Db implements Driver_DbInterface
         \DB::update('queue_queues')
             ->set(
                 array(
-                    'name' => $name,
-                    'status' => $status,
-                    'threshold' =>  $threshold,
+                    'name'                 => $name,
+                    'status'               => $status,
+                    'threshold'            =>  $threshold,
                     'timeperiod_threshold' => $timeperiodThreshold
                 )
             )

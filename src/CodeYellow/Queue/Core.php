@@ -69,6 +69,9 @@ class Core
      */
     public static function executeJob($job)
     {
+        // Just to get a global indicator of memory usage of job
+        $memoryStart = memory_get_usage();
+
         try {
             // Update threshold for queue
             $job->getQueue()->updateExecuteAfter();
@@ -94,6 +97,10 @@ class Core
             $return = false;
         }
         self::logJob($job, \Config::get('queue.log_option'));
+
+        // Save memory usage to job
+        $job->setMemoryUsage($memoryStart);
+
         unset($job);
 
         return $return;
