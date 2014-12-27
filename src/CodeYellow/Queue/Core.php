@@ -69,8 +69,9 @@ class Core
      */
     public static function executeJob($job)
     {
-        // Just to get a global indicator of memory usage of job
+        // Just to get a global indicator of memory usage & time used by job
         $memoryStart = memory_get_usage();
+        $timeStart   = time();
 
         try {
             // Update threshold for queue
@@ -100,6 +101,9 @@ class Core
 
         // Save memory usage to job
         $job->setMemoryUsage($memoryStart);
+
+        // Save time to job
+        $job->setTimeUsed($timeStart);
 
         unset($job);
 

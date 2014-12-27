@@ -99,6 +99,11 @@ class Job
     public $memory = 0;
 
     /**
+     * Amount of time used by job
+     */
+    public $time_used = 0;
+
+    /**
      * Load the driver
      *
      * @param string $class        The class that needs to be called
@@ -176,6 +181,7 @@ class Job
         $this->priority     = $priority;
         $this->status       = static::STATUS_IN_QUEUE;
         $this->memory       = 0;
+        $this->time_used    = 0;
 
         $this->jobId = static::$driver->createJob(
             array(
@@ -189,6 +195,7 @@ class Job
                 'time_executed' => $this->timeExecuted,
                 'time_added'    => $this->timeAdded,
                 'memory'        => $this->memory,
+                'time_used'     => $this->time_used,
             )
         );
 
@@ -237,6 +244,7 @@ class Job
         $this->class        = $job['class'];
         $this->function     = $job['function'];
         $this->memory       = $job['memory'];
+        $this->time_used    = $job['time_used'];
 
         return $this;
     }
@@ -485,6 +493,16 @@ class Job
     }
 
     /**
+     * Get time usage of job
+     *
+     * @return int time used to execute job
+     */
+    public function getTimeUsed()
+    {
+        return (int) $this->time_used;
+    }
+
+    /**
      * Sets status to running
      *
      * @param int $newStatus the new status of this queue
@@ -510,6 +528,21 @@ class Job
     public function setMemoryUsage($memoryStart)
     {
         $this->memory = (memory_get_usage() - $memoryStart);
+        $this->save();
+
+        return $this;
+    }
+
+    /**
+     * Sets time usage
+     *
+     * @param int $timeStart Time at start
+     *
+     * @return self
+     */
+    public function setTimeUsage($timeStart)
+    {
+        $this->time_used = (time() - $timeStart);
         $this->save();
 
         return $this;
@@ -594,6 +627,7 @@ class Job
                 'time_executed' => $this->timeExecuted,
                 'time_added'    => $this->timeAdded,
                 'memory'        => $this->memory,
+                'time_used'     => $this->time_used,
             )
         );
     }

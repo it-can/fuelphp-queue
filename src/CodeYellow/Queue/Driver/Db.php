@@ -108,6 +108,7 @@ class Driver_Db implements Driver_DbInterface
                     'class',
                     'function',
                     'memory',
+                    'time_used',
                 )
             )
             ->values(
@@ -122,6 +123,7 @@ class Driver_Db implements Driver_DbInterface
                     $options['class'],
                     $options['function'],
                     $options['memory'],
+                    $options['time_used'],
                 )
             )
             ->execute();
@@ -153,6 +155,7 @@ class Driver_Db implements Driver_DbInterface
                     'class'         => $options['class'],
                     'function'      => $options['function'],
                     'memory'        => $options['memory'],
+                    'time_used'     => $options['time_used'],
                 )
             )
             ->where('id', $jobId)
@@ -272,7 +275,7 @@ class Driver_Db implements Driver_DbInterface
                 array(
                     'name'                 => $name,
                     'status'               => $status,
-                    'threshold'            =>  $threshold,
+                    'threshold'            => $threshold,
                     'timeperiod_threshold' => $timeperiodThreshold
                 )
             )
