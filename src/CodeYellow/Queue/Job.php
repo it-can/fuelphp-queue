@@ -540,7 +540,7 @@ class Job
      *
      * @return self
      */
-    public function setTimeUsage($timeStart)
+    public function setTimeUsed($timeStart)
     {
         $this->time_used = (time() - $timeStart);
         $this->save();
