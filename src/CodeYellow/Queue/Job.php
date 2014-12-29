@@ -499,7 +499,7 @@ class Job
      */
     public function getTimeUsed()
     {
-        return (int) $this->time_used;
+        return (float) $this->time_used;
     }
 
     /**
@@ -542,7 +542,7 @@ class Job
      */
     public function setTimeUsed($timeStart)
     {
-        $this->time_used = (time() - $timeStart);
+        $this->time_used = (microtime(true) - $timeStart);
         $this->save();
 
         return $this;
@@ -566,7 +566,7 @@ class Job
      */
     public function setTimeExecuted()
     {
-        $this->timeExecuted = time();
+        $this->timeExecuted = microtime(true);
         $this->save();
 
         return $this;

@@ -71,7 +71,7 @@ class Core
     {
         // Just to get a global indicator of memory usage & time used by job
         $memoryStart = memory_get_usage();
-        $timeStart   = time();
+        $timeStart   = microtime(true);
 
         try {
             // Update threshold for queue
