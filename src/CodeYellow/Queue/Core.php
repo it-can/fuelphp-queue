@@ -80,10 +80,17 @@ class Core
             // Set job status
             $job->setStatus(Job::STATUS_RUNNING);
 
-            call_user_func_array(
-                $job->getClass() . '::' . $job->getFunction(),
-                $job->getArgs()
-            );
+            $class  = $job->getClass();
+            $method = $job->getFunction();
+
+            //call_user_func_array(
+            //    $job->getClass() . '::' . $job->getFunction(),
+            //    $job->getArgs()
+            //);
+
+            // Call class and pass array
+            $class::$method($job->getArgs());
+
             $job->setStatus(Job::STATUS_DONE);
             $job->setTimeExecuted();
 
@@ -99,11 +106,8 @@ class Core
         }
         self::logJob($job, \Config::get('queue.log_option'));
 
-        // Save memory usage to job
-        $job->setMemoryUsage($memoryStart);
-
-        // Save time to job
-        $job->setTimeUsed($timeStart);
+        // Save memory + time usage to job
+        $job->setUsage($memoryStart, $timeStart);
 
         unset($job);
 

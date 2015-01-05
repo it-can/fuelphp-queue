@@ -119,7 +119,7 @@ class Job
         $method       = null,
         $args         = null,
         $queueId      = null,
-        $priority     = Job::PRIORITY_MEDIUM,
+        $priority     = static::PRIORITY_MEDIUM,
         $executeAfter = 0
     ) {
         static::$driver = new Driver_Db;
@@ -147,7 +147,7 @@ class Job
         $method,
         $args,
         $queueId,
-        $priority = Job::PRIORITY_MEDIUM,
+        $priority = static::PRIORITY_MEDIUM,
         $executeAfter = 0
     ) {
 
@@ -519,29 +519,15 @@ class Job
     }
 
     /**
-     * Sets memory usage
+     * Sets memory + time usage
      *
      * @param int $memoryStart Memory at start
      *
      * @return self
      */
-    public function setMemoryUsage($memoryStart)
+    public function setUsage($memoryStart, $timeStart)
     {
         $this->memory = (memory_get_usage() - $memoryStart);
-        $this->save();
-
-        return $this;
-    }
-
-    /**
-     * Sets time usage
-     *
-     * @param int $timeStart Time at start
-     *
-     * @return self
-     */
-    public function setTimeUsed($timeStart)
-    {
         $this->time_used = (microtime(true) - $timeStart);
         $this->save();
 
