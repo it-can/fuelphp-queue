@@ -119,7 +119,7 @@ class Job
         $method       = null,
         $args         = null,
         $queueId      = null,
-        $priority     = static::PRIORITY_MEDIUM,
+        $priority     = self::PRIORITY_MEDIUM,
         $executeAfter = 0
     ) {
         static::$driver = new Driver_Db;
@@ -147,7 +147,7 @@ class Job
         $method,
         $args,
         $queueId,
-        $priority = static::PRIORITY_MEDIUM,
+        $priority = self::PRIORITY_MEDIUM,
         $executeAfter = 0
     ) {
 
