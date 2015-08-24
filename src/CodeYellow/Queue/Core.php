@@ -72,6 +72,7 @@ class Core
         // Just to get a global indicator of memory usage & time used by job
         $memoryStart = memory_get_usage();
         $timeStart   = microtime(true);
+        $result = null;
 
         try {
             // Update threshold for queue
@@ -89,7 +90,7 @@ class Core
             //);
 
             // Call class and pass array
-            $class::$method($job->getArgs());
+            $result = $class::$method($job->getArgs());
 
             $job->setStatus(Job::STATUS_DONE);
             $job->setTimeExecuted();
@@ -102,6 +103,7 @@ class Core
             $error = new Error;
             $error->create($job->getId(), print_r($e->getMessage(), true));
             $job->setTimeExecuted();
+
             $return = false;
         }
         self::logJob($job, \Config::get('queue.log_option'));
