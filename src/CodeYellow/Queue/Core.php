@@ -84,13 +84,13 @@ class Core
             $class  = $job->getClass();
             $method = $job->getFunction();
 
-            call_user_func_array(
-               $job->getClass() . '::' . $job->getFunction(),
-               $job->getArgs()
-            );
+            //call_user_func_array(
+            //    $job->getClass() . '::' . $job->getFunction(),
+            //    $job->getArgs()
+            //);
 
             // Call class and pass array
-            //$result = $class::$method($job->getArgs());
+            $result = $class::$method($job->getArgs());
 
             $job->setStatus(Job::STATUS_DONE);
             $job->setTimeExecuted();
