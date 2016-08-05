@@ -90,7 +90,9 @@ class Core
             //);
 
             // Call class and pass array
-            $result = $class::$method($job->getArgs());
+            //$result = $class::$method($job->getArgs());
+
+            call_user_func([$class, $method], $job->getArgs());
 
             $job->setStatus(Job::STATUS_DONE);
             $job->setTimeExecuted();
